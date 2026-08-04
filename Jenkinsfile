@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS'
-    }
-    
     environment {
         REPO_URL = 'https://github.com/IshaMungekar52/jenkins_pipeline.git'
     }
