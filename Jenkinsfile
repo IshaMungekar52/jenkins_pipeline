@@ -1,12 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        REPO_URL = 'https://github.com/IshaMungekar52/jenkins_pipeline.git'
+    }
+
     stages {
 
-        stage('Clone') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/IshaMungekar52/jenkins_pipeline.git'
+                    url: "${REPO_URL}"
             }
         }
 
@@ -25,6 +29,13 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm test -- --watchAll=false'
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'build/**',
+                                 fingerprint: true
             }
         }
     }
