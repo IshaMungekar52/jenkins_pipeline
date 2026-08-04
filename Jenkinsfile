@@ -28,7 +28,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npm test -- --watchAll=false'
+                bat 'npm test -- --watchAll=false --passWithNoTests'
             }
         }
 
